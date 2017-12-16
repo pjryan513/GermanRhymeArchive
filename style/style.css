@@ -1,0 +1,120 @@
+body {
+        background-color: white;
+
+}
+
+#Body_Area {
+    overflow: hidden;
+    width: 1500px;
+}
+
+div.Header {
+        background-color: #800000;
+        text-align: center;
+        color: white;
+        padding: 20px;
+        margin: 50px;
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+div.Search {
+        float: left;
+        overflow: hidden;
+        width: 350px;
+        background-color: #800000;
+        text-align: center;
+        color: black;
+        padding: 20px;
+        margin: 50px;
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+div.Insert {
+    float: left;
+    background-color: #800000;
+    text-align: center;
+    height: 500px;
+    width: 350px;
+    padding: 20px;
+    margin: 10px;
+    font-family: Helvetica, Arial, Sans-Serif;
+}
+
+div.Search_area {
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    font-family: Helvetica, Arial, Sans-Serif;
+}
+
+h1.Header {
+        font-size: 50px;
+	font-family: Helvetica, Arial, Sans-Serif;
+
+}
+
+p.Header {
+        font-size: 30px;
+        color: white;
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+input.text {
+    margin:10px auto;
+    max-width: 400px;
+    padding: 10px 6px 5px 10px;
+    font-family: Helvetica, Arial, Sans-Serif;
+}
+
+.Archive_button {
+    background-color: #800000;
+    color: white;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    font-family: Helvetica, Arial, Sans-Serif;
+}
+
+table{
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-family: Helvetica, Arial, Sans-Serif;
+	
+		
+}
+
+th, td{
+	border: 1px solid black;
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+Space {
+	padding: 10px;
+	margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}

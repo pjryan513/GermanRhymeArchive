@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Search Results</title>
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+	<body>
+		<?php
+
+			$attr = '*';
+			$rel = " ";
+			$cond = " ";
+
+			echo "flor is: ".$_POST['flor']."\n";
+
+			if(isset($_POST['flor'])) {
+				echo "setting attr\n";
+				$rel = $rel . "rhyme";
+				$cond = $cond . "flor='" . $_POST['flor']';
+			}
+			echo "testing\n";
+			echo "rel is: $rel\n";
+			echo "cond is: $cond\n";
+			$db_file = 'hoopd.db';
+
+			try {
+				$db = new PDO('sqlite:' . $db_file);
+
+				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+				$query_str = "select $attr from$rel where$cond";
+				$result_set = $db->query($query_str);
+
+				foreach($result_set as $tuple) {
+					echo "$tuple[rID] $tuple[flor] $tuple[";
+				}
+
+				$db = null;
+			}
+			catch(PDOException $e) {
+				die('Exception : ' . $e->getMessage());
+			}
+		?>
+	</body>
+</html>

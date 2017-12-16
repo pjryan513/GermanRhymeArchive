@@ -1,0 +1,14 @@
+<html>
+<body>
+
+<form action="newuser.php" method="post">
+<?php $_GET['f'] ?>
+First Name: <input type="text"  name="first" value=$_POST[f] required pattern="[a-zA-Z]+" title="Please only enter letters"><br>
+Middle Name: <input type="text" name="middle"><br>
+Last Name: <input type="text" name="last" required pattern="[a-zA-Z]+" title="Please only enter letters"><br>
+SSN: <input type="text" name="ssn" required placeholder="555-55-5555" pattern="\d{3}-?\d{2}-?\d{4}" title="Please match the pattern ###-##-####"><BR>
+<input type="submit" name="submit">
+</form>
+
+</body>
+</html>

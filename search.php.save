@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Search Results</h2>
+<p>
+    <?php
+
+        //path to the SQLite database file
+        $db_file = 'hoop.db';
+
+        try {
+            //open connection to the airport database file
+            $db = new PDO('sqlite:' . $db_file);
+
+		$flor = $_POST['flor'];
+		$illuL = $_POST['illuL'];
+		$illuF = $_POST['illuF'];
+		$vol = $_POST['vol'];
+		$dateStart = $_POST['dateStart'];
+		$dateEnd = $_POST['dateEnd'];
+		//$count = $_POST['count'];
+		//$illuFrea = $_POST['illuFrea'];
+		//$onlyIllu = $_POST['onlyIllu'];
+		$query_str ="";
+		if(!empty($flor)){
+			$query_str .= "select *  from rhyme WHERE flor='$flor'";
+		}
+		// get illustratorID
+		// join illustratorID with drawfor
+		//
+		if(!empty($illuL) and !empty($illuF)){
+                        //$query_str .= "something";
+                 
+                }
+		if(!empty($illuF)){
+                        //$query_str .= "something";
+                        echo "illuFr is not empty";               
+                }
+		if(!empty($vol)){
+                        //$query_str .= "something";
+                        echo "vol is not empty";               
+                }
+		if(!empty($dateStart)){
+                        //$query_str .= "something";
+                        echo "date start is not empty";               
+                }
+		if(!empty($dateEnd)){
+                        //$query_str .= "something";
+                        echo "date end is not empty";               
+                }
+            
+	    //set errormode to use exceptions
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            //return a passenger given an ssn
+        //$query_str = "select * from illustrator;";
+	print_r($query_str);
+        $result_set = $db->query($query_str);
+	$count = "select count(illustratorID) from illustrator;";
+        $count_result = $db->query($count);
+	while ($row = $count_result->fetch(PDO::FETCH_ASSOC))
+	{
+		//useful for getting info about variables print_r($row);
+		echo $row["count(illustratorID)"];
+	}
+     	//echo "<h5> $tempcount <h5>";
+            foreach($result_set as $tuple) {
+            echo "<hr><font color='blue'>$tuple[rID]</font> $tuple[flor]";
+             
+        
+            echo "</br>";
+            }
+
+            //disconnect from db
+            $db = null;
+        }
+        catch(PDOException $e) {
+            die('Exception : '.$e->getMessage());
+        }
+    ?>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Kent Hooper German Rhyme Archive</title>
+                <link rel="stylesheet" type="text/css" href="style/style.css">
+        </head>
+        <body>
+		
+		<ul>
+  			<li><a class="active" href="index.html">Home</a></li>
+  			<li><a href="login.html">Login</a></li>
+  			<li><a style="text-align:right;" href="logout.php">Logout</a></li>
+		</ul>		
+                <div class="Header">
+                        <h1 class="Header">Welcome to the Kent Hooper German Rhyme Archive</h1>
+                        <p class="Header">Providing thousands of German nursery rhymes and their illustrations to search through</p>
+                </div>
+                <div id="Body_Area">
+                        <form action="search_test.php" method="post">
+                                <div class="Search">
+                                        <p class="Header">Search</p>
+                                        <div class="Search_area">
+                                                <p><u>Rhyme</u></p>
+                                                <input type="text" name="flor" placeholder="Enter rhyme">
+                                        </div>
+
+                                        <div class="Search_area">
+                                                <p><u>Illustrator</u></p>
+                                                <input type="text" name="illuL" placeholder="Last"> 
+                                                <input type="text" name="illuF" placeholder="First">
+                                        </div>
+                                        <div class="Search_area">
+                                                <p><u>Filter Search</u></p>
+                                                <input type="checkbox" name="onlyIllu" value="onlyIllu"> Only return illustated rhymes<br>
+                                                <p>Date Range of Rhyme</p>
+                                                <input type="text" name="dateStart" placeholder="start date"> -
+                                                <input type="text" name="dateEnd" placeholder="end date">
+                                                <p>Gender</p>
+                                                <select name="gender">
+                                                        <option value="both_gender">both</option>
+                                                        <option value="female">female</option>
+                                                        <option value="male">male</option>
+                                                </select>
+                                        </div>
+                                        <input type="submit" style="cursor: pointer;" name="Search">
+                                </div>
+                        </form>
+                        <div class="Search">
+                                <p class="Header">Contribute</p>
+				<div class="Search_area">
+					<a href="http://10.250.94.70/~ubuntu/login.html">Login</a>
+				</div>
+                        </div>
+                        <div class="Search">
+                                <form action="view_archive.php" method="get">
+                                        <p class="Header">View Archive</p>
+                                        <div class="Search_area">
+                                                <button class="Archive_button" name="rhy" type="submit" value="rhyme">Rhymes</button><br>
+                                        </div>
+                                        <div class="Search_area">
+                                                <button class="Archive_button" name="illu" type="submit" value="illustrator">Illustrators</button><br>
+                                        </div>
+                                        <div class="Search_area">
+                                                <button class="Archive_button" name="vol" type="submit" value="volume">Volumes</button>
+                                        </div>
+                                </form>
+                        </div>
+                </div>
+		<hr>
+		<p class="Header" style="text-align:center;" >
+			<font color="black">For inquiries about the website, please contact Dr. Hooper at</font>
+			<a href="mailto:hooper@pugetsound.edu?Subject=Nursery%20Rhyme%20Database" target="_top">hooper@pugetsound.edu</a>
+		</p>
+
+        </body>
+</html>

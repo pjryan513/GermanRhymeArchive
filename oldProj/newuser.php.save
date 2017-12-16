@@ -1,0 +1,7 @@
+<?php
+
+ if(isset($_POST['submit'])){
+	if( $_POST['first'] == ""){}
+	if( $_POST['last'] == ""){}
+	if( $_POST['ssn'] == ""){}
+?> 

@@ -1,0 +1,34 @@
+body {
+	background-color: white;
+	
+}
+
+div.Header {
+	background-color: #800000;
+	text-align: center;
+	color: white;
+	padding: 25px;
+	margin: 50px;
+}
+
+div.search {
+        background-color: #D3D3D3;
+        text-align: center;
+        color: black;
+        padding: 20px;
+        margin: 100px;
+}
+
+h1.Header {
+	font-size: 40px;
+}
+
+p.Header {
+	font-size: 20px;
+}
+input.text {
+    margin:10px auto;
+    max-width: 400px;
+    padding: 10px 6px 5px 10px;
+    font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
