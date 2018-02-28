@@ -183,7 +183,7 @@ def fillVolume():
 #"A2","G33912"
 def fillRhyme():
 	rhymes = parse.readRhyme("A2","G33912")
-	rhymes
+	print rhymes[1]
 	# rID = 0
 	# flors = []
 	# caught = []

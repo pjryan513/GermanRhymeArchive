@@ -170,7 +170,6 @@ def readRhymeInfo(wb, start, end):
 	global illustrator
 	global paginated
 	global external
-	errorReport = []
 	flip = 0
 	lastDate = 0
 	volumeID = 0
@@ -183,6 +182,7 @@ def readRhymeInfo(wb, start, end):
 	ws = wb["rhyme instance"]
 	cell_range = ws[start:end] 
 	rID = 0
+	rowNumber = 2
 	for row in cell_range: # This is iterating through rows 1-7
 		for cell in row: # This iterates through the columns(cells) in that row
 			# print str(cell.value), "|", 
@@ -197,7 +197,8 @@ def readRhymeInfo(wb, start, end):
 				hold = B(fpor)
 				if hold[1] is True:
 					prf = 'NULL'
-					errorReport.append(row)
+					if rowNumber not in errorReport:
+						errorReport.append(rowNumber)
 					continue
 				else:
 					check = 1
@@ -208,14 +209,16 @@ def readRhymeInfo(wb, start, end):
 						prf = hold[0]
 					else:
 						prf = 'NULL'
-						errorReport.append(row)
+						if rowNumber not in errorReport:
+							errorReport.append(rowNumber)
 						continue
 			if cell.column == 'C':
 				if type(cell.value) == str:
 					illu = str(cell.value) #Is the rhyme illustrated (y/n)
 				else:
 					illu = 'NULL'
-					errorReport.append(row)
+					if rowNumber not in errorReport:
+						errorReport.append(rowNumber)
 			if cell.column == 'D':
 				if cell.value:
 					if unicode(cell.value) is "b/w":
@@ -228,20 +231,23 @@ def readRhymeInfo(wb, start, end):
 						illt = 'NULL'
 					else:
 						illt = 'NULL'
-						errorReport.append(row)
+						if rowNumber not in errorReport:
+							errorReport.append(rowNumber)
 						continue
 			if cell.column == 'E':
 				if cell.value:
 					if 'facing' in unicode(cell.value):
 						pif = 'NULL'
-						errorReport.append(row)
+						if rowNumber not in errorReport:
+							errorReport.append(rowNumber)
 						continue
 					if '*' in unicode(cell.value):
 						pif = 'NULL'
-						errorReport.append(row)
+						if rowNumber not in errorReport:
+							errorReport.append(rowNumber)
 						continue
 					else:
-						hold = E(cell.value)
+						hold = E(unicode(cell.value))
 						check = 1
 						for page in hold:
 							if type(page) is not int:
@@ -250,7 +256,8 @@ def readRhymeInfo(wb, start, end):
 							pif = hold
 						else:
 							pif = 'NULL'
-							errorReport.append(row)
+							if rowNumber not in errorReport:
+								errorReport.append(rowNumber)
 							continue
 				else:
 					pif = "NULL"
@@ -283,6 +290,7 @@ def readRhymeInfo(wb, start, end):
 					trigger = 1
 		rhymes.append((flor, prf, illt, pif, volumeID))
 		rID += 1
+		rowNumber += 1
 	return [rhymes, errorReport, rhymesIn, illustratedVol, illustratorsOfVol]
 
 def readRhyme(start, end):
