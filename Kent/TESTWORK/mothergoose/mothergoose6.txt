@@ -1,0 +1,13 @@
+
+@book{miller_nursery_1937,
+address = {Chicago},
+series = {My {Book} {House}},
+title = {In the {Nursery} of my {Book} {House}},
+volume = {1},
+url = {http://www.worldcat.org/oclc/3993628},
+publisher = {The Book House for Children},
+author = {Wilhoite [Turner] (illustrator) Mariel, and {Martin (illustrator)}, and Enright (illustrator) Maginel Wright (1881-1966), and Heath (illustrator) Gordon, and {Unattributed Illustrator(s)}},
+editor = {Miller, Olive Beaupré (1883-1968)},
+year = {1937},
+note = {pages 19-56}
+}

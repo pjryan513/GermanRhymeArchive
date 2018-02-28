@@ -1,0 +1,12 @@
+
+@book{walter_mother_1924,
+address = {London},
+title = {Mother {Goose}'s {Nursery} {Rhymes}},
+url = {http://www.worldcat.org/oclc/12157821},
+language = {English},
+publisher = {Adam and Charles Black},
+author = {Folkard (illustrator) Charles (1878-1963)},
+editor = {Walter, L[avinia] Edna},
+year = {1924},
+note = {This ed. 1948, repr. 1951. [12 colour plate].}
+}

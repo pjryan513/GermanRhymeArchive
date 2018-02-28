@@ -1,0 +1,9 @@
+
+@book{jones_illustrator_lavenders_1954,
+address = {London, Glasgow, New York and elsewhere},
+title = {Lavender’s {Blue}: {A} book of nursery rhymes},
+url = {http://www.worldcat.org/oclc/838004215},
+publisher = {Oxford University Press},
+author = {Jones (illustrator) Harold (1904-1992), and Lines (compiler) Kathleen [Mary] (1902-1988)},
+year = {1954}
+}

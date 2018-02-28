@@ -1,0 +1,10 @@
+
+@book{folkard_illustrator_land_1932,
+address = {London, Toronto and elsewhere; New York},
+title = {The {Land} of {Nursery} {Rhyme}},
+url = {http://www.worldcat.org/oclc/558607621},
+publisher = {J.M. Dent; E.P. Dutton},
+author = {Folkard (illustrator) Charles (1878-1963), and Rhys Ernest (1859-1946)},
+editor = {Daglish, Alice},
+year = {1932}
+}

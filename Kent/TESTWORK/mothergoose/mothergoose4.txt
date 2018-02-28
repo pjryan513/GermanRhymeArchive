@@ -1,0 +1,9 @@
+
+@book{hart_illustrator_mother_1943,
+address = {New York},
+title = {Mother {Goose} {Magic} {Window}},
+url = {http://www.worldcat.org/oclc/40309542},
+publisher = {Animated Book Company, Inc},
+author = {Hart (illustrator) Hank [A.]},
+year = {1943}
+}

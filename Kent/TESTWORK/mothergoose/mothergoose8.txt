@@ -1,0 +1,9 @@
+
+@book{rey_illustrator_and_arranger_humpty_1943,
+address = {New York and London},
+title = {Humpty {Dumpty} and other {Mother} {Goose} {Songs}},
+url = {http://www.worldcat.org/oclc/77704210},
+publisher = {Harper},
+author = {Rey (illustrator {and} arranger), H[ans] A[ugusto] (1898-1977)},
+year = {1943}
+}

@@ -1,0 +1,15 @@
+
+@book{miller_nursery_1920,
+address = {Chicago},
+edition = {First},
+series = {My {Book} {House}},
+title = {In the {Nursery} of my {Bookhouse}},
+volume = {1},
+url = {http://www.worldcat.org/oclc/5977081},
+publisher = {The Book House for Children},
+author = {Winter (illustrator) Milo (1888-1956), and Smith (illustrator) Dorothy Hope (1895-1955), and Hanway (illustrator) Hilda (1895-1926), and Elliott (illustrator) Bertram R. (1889-1931), and Enright (illustrator) Maginel Wright (1881-1966), and Ketchum (illustrator) Glen [Glencora W. S.] (1897-1982), and Caldwell (illustrator) Margaret, and Unidentied (illustrator[s])},
+editor = {Miller, Olive Beaupré (1883-1968)},
+collaborator = {Lawrence (Art Direction), Chester H.},
+year = {1920},
+note = {pages 2-5, 7-16, 19-57, 98-99, 110, 177}
+}

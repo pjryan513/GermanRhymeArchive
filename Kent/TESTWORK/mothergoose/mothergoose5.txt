@@ -1,0 +1,9 @@
+
+@book{briggs_illustrator_white_1963,
+address = {London},
+title = {The {White} {Land}: {A} {Picture} {Book} of {Traditional} {Rhymes} and {Verses}},
+url = {http://www.worldcat.org/oclc/222863697},
+publisher = {Hamish Hamilton},
+author = {Briggs (illustrator) Raymond (1934- )},
+year = {1963}
+}

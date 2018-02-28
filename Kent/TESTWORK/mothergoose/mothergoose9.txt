@@ -1,0 +1,12 @@
+
+@book{folkard_illustrator_mother_1919,
+address = {London},
+title = {Mother {Goose}’s {Nursery} {Rhymes}},
+url = {http://www.worldcat.org/oclc/18677972},
+publisher = {A. \& C. Black},
+author = {Folkard (illustrator) Charles (1878-1963)},
+editor = {Walter, L[avinia] Edna},
+collaborator = {Walter, L[avinia] Edna},
+year = {1919},
+note = {online ed. https://archive.org/details/mothergoosesnurs00walt}
+}

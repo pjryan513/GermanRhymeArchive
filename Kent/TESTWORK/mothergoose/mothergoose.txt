@@ -1,0 +1,14 @@
+
+@incollection{eulalie_[banks]_illustrator_mother_1939,
+address = {New York},
+title = {The {Mother} {Goose} {Rhymes}},
+language = {English},
+booktitle = {The {Brimful} {Book}. {A} {Collection} of {Mother} {Goose} {Rhymes}/{Animal} {Stories}/{ABC}},
+publisher = {Platt and Munk},
+author = {Eulalie [Banks] (illustrator) (1895-1999), and Burd (illustrator) C[lara] M[iller] (1873-1933), and Haumann (illustrator) G[eorge] (d. 1961), and Haumann (illustrator) D[oris Holt] (1898-1978)},
+editor = {Piper, Watty (d. 1957)},
+year = {1939},
+note = {Watty Piper is a pen name of Arnold Munk (b. in Hungary; d. 1957) from Platt and Munk.
+A 1955 ed. has same rhymes and illus.},
+pages = {[1]--[36]; unpaginated volume, 72 pp. total}
+}
