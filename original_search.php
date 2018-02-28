@@ -1,4 +1,5 @@
 
+<!
 
 <!DOCTYPE html>
 <html>
@@ -82,50 +83,12 @@
 				//$stmt->bindParam(":cond", $cond);
 				//$stmt->execute();
 
-				//---------------old query prep code------------
-				//$query_str = "select distinct $attr from $rel where $cond";
-				//$result_set = $db->query($query_str);
-				//$count = "select distinct count(rID) from $rel where $cond";
-				//$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
-				//$illuFreqR = $db->query($illuFreq);
-				//$count_result = $db->query($count);
-
-				$query_str = "";
-				if($cond == "")
-				{
-					$query_str = "select distinct $attr from $rel";
-				}
-				else
-				{
-					$query_str = "select distinct $attr from $rel where $cond";
-				}
-				
+				$query_str = "select distinct $attr from $rel where $cond";
 				$result_set = $db->query($query_str);
-
-				$count = "";
-				if($cond == "")
-				{
-					$count = "select distinct count(rID) from $rel";
-				}
-				else
-				{
-					$count = "select distinct count(rID) from $rel where $cond";
-				}
-
-				$illuFreq ="";
-				if($cond == "")
-				{
-					$illuFreq = "select distinct count(illu) from $rel";
-				}
-				else
-				{
-					$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
-				}
-				
-				//$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
+				$count = "select distinct count(rID) from $rel where $cond";
+				$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
 				$illuFreqR = $db->query($illuFreq);
 				$count_result = $db->query($count);
-
         			while ($row = $count_result->fetch(PDO::FETCH_ASSOC))
         			{
                 			//useful for getting info about variables print_r($row);
