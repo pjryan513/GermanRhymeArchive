@@ -113,7 +113,7 @@
 				{
 					$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
 				}
-				$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
+				//$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
 				$illuFreqR = $db->query($illuFreq);
 				$count_result = $db->query($count);
         			while ($row = $count_result->fetch(PDO::FETCH_ASSOC))
