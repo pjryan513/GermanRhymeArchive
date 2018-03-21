@@ -194,7 +194,10 @@ def readRhymeInfo(wb, start, end):
 				else:
 					flor = unicode(cell.value) #First line of the rhyme
 			if cell.column == 'B':
-				fpor = str(cell.value)
+				if type(cell.value) is unicode:
+					fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
+				else:
+					fpor = str(cell.value)
 				hold = B(fpor)
 				if hold[1] is True:
 					prf = 'NULL'
@@ -230,7 +233,7 @@ def readRhymeInfo(wb, start, end):
 						pif = unicode(cell.value)
 					else:
 						pif = 'NULL'
-						if rowNumber not in errorReport:
+						if rowNumber not in errorReport and illu is not 'yes':
 							errorReport.append(rowNumber)
 							continue
 				else:
@@ -268,7 +271,7 @@ def readRhymeInfo(wb, start, end):
 	return [rhymes, errorReport, rhymesIn, illustratedVol, illustratorsOfVol]
 
 def readRhyme(start, end):
-	wb = load_workbook(filename = 'hoop.xlsx')
+	wb = load_workbook(filename = 'updatedHoop.xlsx')
 	rhyme = readRhymeInfo(wb, start, end)
 	return rhyme
 

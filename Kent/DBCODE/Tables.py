@@ -4,8 +4,8 @@ from openpyxl.styles.colors import Color
 import sqlite3
 import parse
 import Populate
-# conn = sqlite3.connect('/Users/AGuyCalledJP/desktop/databases/final_project/testwork/hoop3.db')
-# c = conn.cursor()
+conn = sqlite3.connect('/Users/AGuyCalledJP/desktop/hoop.db')
+c = conn.cursor()
 # --KEY
 # --(FLOR) first Line of rhyme
 # --(FPRF) first page illustration found
@@ -114,7 +114,7 @@ def insertDrawn(values,x):
 				t = tuple(l)
 				total.append(t)
 	for to in total:
-		c.execute('INSERT INTO drawn VALUES(?,?,?,?,?rp)', to,)
+		c.execute('INSERT INTO drawn VALUES(?,?,?,?,?)', to,)
 		conn.commit()
 
 
@@ -168,7 +168,7 @@ def insertDrawFor(values):
 #"A2","G274"
 def fillIllustrator():
 	illustrators = parse.readIllu("A2","G274")
-	print illustrators
+	insertIlli(illustrators)
 
 def fillVolume():
 	# volumes = parse.volumeInfo()
@@ -182,19 +182,18 @@ def fillVolume():
 
 #"A2","G33912"
 def fillRhyme():
-	rhymes = parse.readRhyme("A2","G33912")
-	print rhymes[1]
-	# rID = 0
-	# flors = []
-	# caught = []
-	# for rhyme in rhymes[0]:
-	# 	if rhyme[0] not in caught:
-	# 		caught.append(rhyme[0])
-	# 		r = (rID,rhyme[0])
-	# 		flors.append(r)
-	# 		rID += 1
-	# for flor in flors:
-	# 	insertRhyme(flor)
+	rhymes = parse.readRhyme("A2","G36765")
+	rID = 0
+	flors = []
+	caught = []
+	for rhyme in rhymes[0]:
+		if rhyme[0] not in caught:
+			caught.append(rhyme[0])
+			r = (rID,rhyme[0])
+			flors.append(r)
+			rID += 1
+	for flor in flors:
+		insertRhyme(flor)
 
 def fillContains():
 	part = parse.readRhyme("A2","G33912")
