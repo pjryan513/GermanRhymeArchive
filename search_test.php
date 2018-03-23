@@ -126,6 +126,8 @@
 		$illuFreqR = $db->query($illuFreq);
 		$count_result = $db->query($count);
 
+		$file = fopen("query_results.csv","w");
+
 		while ($row = $count_result->fetch(PDO::FETCH_ASSOC))
 			{
                 			//useful for getting info about variables print_r($row);
@@ -161,7 +163,11 @@
 					//echo "$tuple[rID] | $tuple[flor] | $tuple[illustratorID] | $tuple[lname] | $tuple[fname] | $tuple[datePublished]<br/>\n";
 					//print_r($tuple);
 					$_SESSION['deletevar'] = $tuple;
+					$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'], $tuple['lname'], $tuple['fname'], $tuple['gender'], $tuple['dob'], $tuple['dod'], $tuple['source1'], $tuple['source2']];
+					
+					fputcsv($file,$csv_array,"\\");
 					?>
+					<p> <?php var_dump($csv_array) ?><p>
 					<head>
 						<style>
 						div {
@@ -174,12 +180,13 @@
 						}
 					</style>
 				</head>
-				<body>
+				<!-- <body>
 					<div>
 						<u>First Line of Rhyme:</u><?php echo " $tuple[flor]";?>&emsp; <u>Illustrator:</u> <?php echo " $tuple[lname]";?>, <?php echo " $tuple[fname]";?>&emsp; <u>Gender:</u> <?php echo " $tuple[gender]";?>&emsp; <u>Illustrator Lifespan:</u> <?php echo " $tuple[dob] ";?>-<?php echo " $tuple[dod]";?><br>
 						<u>Volume:</u> <?php echo " $tuple[title]";?>,&emsp; &emsp;<u>Date Published:</u> <?php echo " $tuple[datePublished]";?>
 						&emsp;<u>Paginated:</u> <?php echo " $tuple[paginated]";?> &emsp;<u>External:</u> <?php echo " $tuple[external]";?>&emsp;<u>Illustrated:</u> <?php echo " $tuple[illu]";?><br>
 						<u>Source(s):</u> <?php echo " $tuple[source1]";?>, <?php echo " $tuple[source2]";?>
+
 
 						<form action="delete.php">
 							<input type='hidden' name='var' value="<?php echo $tuple ?>"/>
@@ -187,7 +194,7 @@
 						</form>
 					</div>
 
-					</body>					<?php
+					</body> -->					<?php
 				}
 
 				$db = null;
@@ -195,6 +202,6 @@
 			catch(PDOException $e) {
 				die('Exception : ' . $e->getMessage());
 			}
-			?>
+			fclose($file);?>
 		</body>
 		</html>
