@@ -1,6 +1,8 @@
 from openpyxl import load_workbook
 import sqlite3
 import os
+import re
+import unicodedata
 #/Users/AGuyCalledJP/desktop/databases/final_project/testwork/mothergoose
 #/Users/AGuyCalledJP/desktop/databases/final_project/testwork/xlsx
 
@@ -18,21 +20,11 @@ def braces(element):
 def B(prf):
 	global paginated
 	paginated = 'No'
-	if type(prf) is not str:
-		prfEnd = []
-		if ',' in prf:
-			pages = prf.split(',')
-			if len(pages) > 1:
-				for page in pages:
-					if '[' or ']' in page:
-						paginated = 'Yes'
-						temp = braces(page)
-						prfEnd.append(temp)
-					else: 
-						temp = page
-						prfEnd.append(temp)
-				return [prfEnd,False]
-			else:
+	prfEnd = []
+	if ',' in prf:
+		pages = prf.split(',')
+		if len(pages) > 1:
+			for page in pages:
 				if '[' or ']' in page:
 					paginated = 'Yes'
 					temp = braces(page)
@@ -40,37 +32,46 @@ def B(prf):
 				else: 
 					temp = page
 					prfEnd.append(temp)
-				return [prfEnd,False]
-		elif '-' in prf:
-			pages = prf.split('-')
-			if len(pages) > 1:
-				for page in pages:
-					if '[' or ']' in page:
-						paginated = 'Yes'
-						temp = braces(page)
-						prfEnd.append(temp)
-					else: 
-						temp = page
-						prfEnd.append(temp)
-				return [prfEnd,False]
-			else:
-				if '[' or ']' in page:
-					paginated = 'Yes'
-					temp = braces(page)
-					prfEnd.append(temp)
-				else: 
-					temp = page
-					prfEnd.append(temp)
-				return [prfEnd,False]
+			return [prfEnd,False]
 		else:
-			if '[' or ']' in prf:
-				pagniate = 'Yes'
-				temp = braces(prf)
+			if '[' or ']' in page:
+				paginated = 'Yes'
+				temp = braces(page)
 				prfEnd.append(temp)
-			else:
-				temp = braces(prf)
+			else: 
+				temp = page
 				prfEnd.append(temp)
 			return [prfEnd,False]
+	elif '-' in prf:
+		pages = prf.split('-')
+		if len(pages) > 1:
+			for page in pages:
+				if '[' or ']' in page:
+					paginated = 'Yes'
+					temp = braces(page)
+					prfEnd.append(temp)
+				else: 
+					temp = page
+					prfEnd.append(temp)
+			return [prfEnd,False]
+		else:
+			if '[' or ']' in page:
+				paginated = 'Yes'
+				temp = braces(page)
+				prfEnd.append(temp)
+			else: 
+				temp = page
+				prfEnd.append(temp)
+			return [prfEnd,False]
+	elif  re.search('[a-zA-Z]', prf) is None:
+		if '[' or ']' in prf:
+			pagniate = 'Yes'
+			temp = braces(prf)
+			prfEnd.append(temp)
+		else:
+			temp = braces(prf)
+			prfEnd.append(temp)
+		return [prfEnd,False]
 	else:
 		return [prf,True]
 
@@ -193,71 +194,47 @@ def readRhymeInfo(wb, start, end):
 				else:
 					flor = unicode(cell.value) #First line of the rhyme
 			if cell.column == 'B':
-				fpor = str(cell.value)
+				if type(cell.value) is unicode:
+					fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
+				else:
+					fpor = str(cell.value)
 				hold = B(fpor)
 				if hold[1] is True:
 					prf = 'NULL'
 					if rowNumber not in errorReport:
 						errorReport.append(rowNumber)
-					continue
-				else:
-					check = 1
-					for page in hold[0]:
-						if type(page) is not int:
-							check = 0
-					if check == 1:
-						prf = hold[0]
-					else:
-						prf = 'NULL'
-						if rowNumber not in errorReport:
-							errorReport.append(rowNumber)
 						continue
+				else:
+					prf = hold[0]
 			if cell.column == 'C':
 				if type(cell.value) == str:
 					illu = str(cell.value) #Is the rhyme illustrated (y/n)
 				else:
 					illu = 'NULL'
-					if rowNumber not in errorReport:
-						errorReport.append(rowNumber)
 			if cell.column == 'D':
 				if cell.value:
-					if unicode(cell.value) is "b/w":
+					u = unicode(cell.value)
+					hold = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
+					if "b/w" in hold:
 						illt = unicode(cell.value)
-					elif unicode(cell.value) is 'color':
+					elif "color" in hold:
 						illt = unicode(cell.value)
-					elif unicode(cell.value) is 'color plate':
+					elif "color plate" in hold:
 						illt = unicode(cell.value)
-					elif not cell.value:
-						illt = 'NULL'
 					else:
 						illt = 'NULL'
 						if rowNumber not in errorReport:
 							errorReport.append(rowNumber)
-						continue
 			if cell.column == 'E':
 				if cell.value:
-					if 'facing' in unicode(cell.value):
-						pif = 'NULL'
-						if rowNumber not in errorReport:
-							errorReport.append(rowNumber)
-						continue
-					if '*' in unicode(cell.value):
-						pif = 'NULL'
-						if rowNumber not in errorReport:
-							errorReport.append(rowNumber)
-						continue
+					u = unicode(cell.value)
+					hold = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
+					if re.search('[a-zA-Z]', hold) == None:
+						pif = unicode(cell.value)
 					else:
-						hold = E(unicode(cell.value))
-						check = 1
-						for page in hold:
-							if type(page) is not int:
-								check = 0
-						if check == 1:
-							pif = hold
-						else:
-							pif = 'NULL'
-							if rowNumber not in errorReport:
-								errorReport.append(rowNumber)
+						pif = 'NULL'
+						if rowNumber not in errorReport and illu is not 'yes':
+							errorReport.append(rowNumber)
 							continue
 				else:
 					pif = "NULL"
@@ -294,7 +271,7 @@ def readRhymeInfo(wb, start, end):
 	return [rhymes, errorReport, rhymesIn, illustratedVol, illustratorsOfVol]
 
 def readRhyme(start, end):
-	wb = load_workbook(filename = 'hoop.xlsx')
+	wb = load_workbook(filename = 'updatedHoop.xlsx')
 	rhyme = readRhymeInfo(wb, start, end)
 	return rhyme
 
