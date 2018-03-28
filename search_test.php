@@ -66,7 +66,7 @@
 	}
 			//echo "($cond)";
 
-	$db_file = 'hoop6.db';
+	$db_file = 'hoop.db';
 
 			//$other_query = "SELECT DISTINCT * FROM contains NATURAL JOIN drawn NATURAL JOIN rhyme WHERE rID IN (SELECT rID FROM rhyme) AND illu = 'yes' ORDER BY volumeID";
 
@@ -163,7 +163,8 @@
 					//echo "$tuple[rID] | $tuple[flor] | $tuple[illustratorID] | $tuple[lname] | $tuple[fname] | $tuple[datePublished]<br/>\n";
 					//print_r($tuple);
 					$_SESSION['deletevar'] = $tuple;
-					$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'], $tuple['lname'], $tuple['fname'], $tuple['gender'], $tuple['dob'], $tuple['dod'], $tuple['source1'], $tuple['source2']];
+					$name = $tuple['lname'] . ", " . $tuple['fname'];
+					$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'], $name, $tuple['gender'], $tuple['dob'], $tuple['dod'], $tuple['source1'], $tuple['source2']];
 					
 					fputcsv($file,$csv_array,"\\");
 					?>
