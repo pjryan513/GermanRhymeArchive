@@ -66,7 +66,7 @@
 	}
 			//echo "($cond)";
 
-	$db_file = 'hoop.db';
+	$db_file = 'Kent/hoop.db';
 
 			//$other_query = "SELECT DISTINCT * FROM contains NATURAL JOIN drawn NATURAL JOIN rhyme WHERE rID IN (SELECT rID FROM rhyme) AND illu = 'yes' ORDER BY volumeID";
 
@@ -162,10 +162,11 @@
 				foreach($result_set as $tuple) {
 					//echo "$tuple[rID] | $tuple[flor] | $tuple[illustratorID] | $tuple[lname] | $tuple[fname] | $tuple[datePublished]<br/>\n";
 					//print_r($tuple);
+					echo var_dump($tuple);
 					$_SESSION['deletevar'] = $tuple;
 					$name = $tuple['lname'] . ", " . $tuple['fname'];
-					$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'], $name, $tuple['gender'], $tuple['dob'], $tuple['dod'], $tuple['source1'], $tuple['source2']];
-					
+					$time_frame = $tuple['dob'] . " - " . $tuple['dod'];
+					$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'], $name, $tuple['gender'], $time_frame, $tuple['source1'], $tuple['source2']];
 					fputcsv($file,$csv_array,"\\");
 					?>
 					<p> <?php var_dump($csv_array) ?><p>
