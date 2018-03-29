@@ -194,21 +194,23 @@ def readRhymeInfo(wb, start, end):
 				else:
 					flor = unicode(cell.value) #First line of the rhyme
 			if cell.column == 'B':
-				if type(cell.value) is unicode:
-					fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
-				else:
-					fpor = str(cell.value)
-				hold = B(fpor)
-				if hold[1] is True:
-					prf = 'NULL'
-					if rowNumber not in errorReport:
-						errorReport.append(rowNumber)
-						continue
-				else:
-					prf = hold[0]
+				pass
+				# if type(cell.value) is unicode:
+				# 	fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
+				# else:
+				# 	fpor = str(cell.value)
+				# hold = B(fpor)
+				# if hold[1] is True:
+				# 	prf = 'NULL'
+				# 	if rowNumber not in errorReport:
+				# 		errorReport.append(rowNumber)
+				# 		continue
+				# else:
+				# 	prf = hold[0]
 			if cell.column == 'C':
-				if type(cell.value) == str:
-					illu = str(cell.value) #Is the rhyme illustrated (y/n)
+				test = str(cell.value)
+				if test == 'yes' or test == 'no':
+					illu = test #Is the rhyme illustrated (y/n)
 				else:
 					illu = 'NULL'
 			if cell.column == 'D':
@@ -226,18 +228,19 @@ def readRhymeInfo(wb, start, end):
 						if rowNumber not in errorReport:
 							errorReport.append(rowNumber)
 			if cell.column == 'E':
-				if cell.value:
-					u = unicode(cell.value)
-					hold = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
-					if re.search('[a-zA-Z]', hold) == None:
-						pif = unicode(cell.value)
-					else:
-						pif = 'NULL'
-						if rowNumber not in errorReport and illu is not 'yes':
-							errorReport.append(rowNumber)
-							continue
-				else:
-					pif = "NULL"
+				pass
+				# if cell.value:
+				# 	u = unicode(cell.value)
+				# 	hold = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
+				# 	if re.search('[a-zA-Z]', hold) == None:
+				# 		pif = unicode(cell.value)
+				# 	else:
+				# 		pif = 'NULL'
+				# 		if rowNumber not in errorReport and illu is not 'yes':
+				# 			errorReport.append(rowNumber)
+				# 			continue
+				# else:
+				# 	pif = "NULL"
 			if cell.column == 'F':
 				if cell.value:
 					date = str(cell.value)
@@ -262,10 +265,12 @@ def readRhymeInfo(wb, start, end):
 				illustrator = unicode(cell.value)
 				illustrator = G(illustrator)
 				if trigger == 0:
-					illustratedVol.append((volumeID, datePublished, paginated, external))
+					#illustratedVol.append((volumeID, datePublished, paginated, external))
+					illustratedVol.append((volumeID, datePublished))
 					illustratorsOfVol.append((volumeID,illustrator))
 					trigger = 1
-		rhymes.append((flor, prf, illt, pif, volumeID))
+		#rhymes.append((flor, prf, illt, pif, volumeID))
+		rhymes.append((flor, illt, volumeID, illu))
 		rID += 1
 		rowNumber += 1
 	return [rhymes, errorReport, rhymesIn, illustratedVol, illustratorsOfVol]
