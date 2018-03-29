@@ -102,22 +102,6 @@ def insertDrawn(values,x):
 	l = list(values)
 	t = tuple(l)
 	total.append(t)
-	# if values[1] is not 'NULL':
-	# 	for v in values:
-	# 		if values[3] is not 'NULL':
-	# 			for value in values[3]:
-	# 				l = list(values)
-	# 				l[0] = hold
-	# 				l[1] = v
-	# 				l[3] = value
-	# 				t = tuple(l)
-	# 				total.append(t)
-	# 		else:
-	# 			l = list(values)
-	# 			l[0] = hold
-	# 			l[1] = v
-	# 			t = tuple(l)
-	# 			total.append(t)
 	for to in total:
 		c.execute('INSERT INTO drawn VALUES(?,?,?)', to,)
 		conn.commit()
@@ -239,18 +223,3 @@ def getIllId(ill):
 def getList():
 	part = parse.readRhyme("A2","G33912")
 	return part
-# def fillDrawn():
-# 	global rhymes
-# 	for rhyme in rhymes 
-
-# def findVolume(rhyme):
-# 	c = conn.cursor()
-
-# def read():
-# 	wb = load_workbook(filename = 'hoop.xlsx')
-# 	ws = wb["Illustrator info"]
-# 	row = ws.max_row 
-# 	column = ws.max_column
-# 	createIlli()
-# 	for x in range(0,row)
-# 	print row, column
