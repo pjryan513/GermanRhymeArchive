@@ -262,10 +262,10 @@ def readRhymeInfo(wb, start, end):
 				illustrator = unicode(cell.value)
 				illustrator = G(illustrator)
 				if trigger == 0:
-					illustratedVol.append((volumeID, datePublished, paginated, external))
+					illustratedVol.append((volumeID, datePublished, paginated))
 					illustratorsOfVol.append((volumeID,illustrator))
 					trigger = 1
-		rhymes.append((flor, prf, illt, pif, volumeID))
+		rhymes.append((flor, illt, volumeID, illu))
 		rID += 1
 		rowNumber += 1
 	return [rhymes, errorReport, rhymesIn, illustratedVol, illustratorsOfVol]

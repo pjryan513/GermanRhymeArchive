@@ -46,7 +46,6 @@ def createVol():
 	volumeID INTEGER,
 	datePublished INTEGER,
 	paginated CHECK (paginated = 'Yes' OR paginated = 'No'),
-	external TEXT CHECK (external = 'Yes' OR external = 'No'),
 	title TEXT NOT NULL,
 	PRIMARY KEY (volumeID)
 	);''')
@@ -55,7 +54,7 @@ def insertVol(values, name):
 	l = list(values)
 	l.append(name)
 	t = tuple(l)
-	c.execute('INSERT INTO volume VALUES(?,?,?,?,?)', t,)
+	c.execute('INSERT INTO volume VALUES(?,?,?,?)', t,)
 	conn.commit()
 
 def createIlli():
@@ -79,12 +78,12 @@ def insertIlli(values):
 
 
 def createDrawn():
+	#prf INTEGER NOT NULL,
+	#pif INTEGER NOT NULL,
 	c = conn.cursor()
 	c.execute(''' CREATE TABLE drawn (
 	rID INTEGER,
-	prf INTEGER NOT NULL,
 	illt TEXT,
-	pif INTEGER NOT NULL,
 	volumeID INTEGER NOT NULL,
 	FOREIGN KEY (volumeID) REFERENCES volume(volumeID)
 	ON UPDATE CASCADE
@@ -97,24 +96,13 @@ def createDrawn():
 def insertDrawn(values,x):
 	hold = (getrID(values[0]))
 	total = []
-	if values[1] is not 'NULL':
-		for v in values[1]:
-			if values[3] is not 'NULL':
-				for value in values[3]:
-					l = list(values)
-					l[0] = hold
-					l[1] = v
-					l[3] = value
-					t = tuple(l)
-					total.append(t)
-			else:
-				l = list(values)
-				l[0] = hold
-				l[1] = v
-				t = tuple(l)
-				total.append(t)
+	if len(values) == 4:
+		values = values[:-1]
+	l = list(values)
+	t = tuple(l)
+	total.append(t)
 	for to in total:
-		c.execute('INSERT INTO drawn VALUES(?,?,?,?,?)', to,)
+		c.execute('INSERT INTO drawn VALUES(?,?,?)', to,)
 		conn.commit()
 
 
