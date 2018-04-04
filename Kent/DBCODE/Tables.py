@@ -41,11 +41,16 @@ def insertRhyme(flor):
 
 
 def createVol():
+	# paginated CHECK (paginated = 'Yes' OR paginated = 'No'),
+	# external TEXT CHECK (external = 'Yes' OR external = 'No'),
 	c = conn.cursor()
 	c.execute(''' CREATE TABLE volume (
 	volumeID INTEGER,
 	datePublished INTEGER,
+<<<<<<< HEAD
 	paginated CHECK (paginated = 'Yes' OR paginated = 'No'),
+=======
+>>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 	title TEXT NOT NULL,
 	PRIMARY KEY (volumeID)
 	);''')
@@ -54,7 +59,11 @@ def insertVol(values, name):
 	l = list(values)
 	l.append(name)
 	t = tuple(l)
+<<<<<<< HEAD
 	c.execute('INSERT INTO volume VALUES(?,?,?,?)', t,)
+=======
+	c.execute('INSERT INTO volume VALUES(?,?,?)', t,)
+>>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 	conn.commit()
 
 def createIlli():
@@ -98,7 +107,11 @@ def insertDrawn(values,x):
 	total = []
 	if len(values) == 4:
 		values = values[:-1]
+<<<<<<< HEAD
 	l = (hold, values[1],values[2])
+=======
+	l = list(values)
+>>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 	t = tuple(l)
 	total.append(t)
 	for to in total:
@@ -170,6 +183,9 @@ def fillVolume():
 
 #"A2","G33912"
 def fillRhyme():
+	#Test code
+	# rhymes = parse.readRhyme("A2","G36765")
+	# print rhymes
 	rhymes = parse.readRhyme("A2","G36765")
 	rID = 0
 	flors = []
@@ -219,18 +235,3 @@ def getIllId(ill):
 def getList():
 	part = parse.readRhyme("A2","G33912")
 	return part
-# def fillDrawn():
-# 	global rhymes
-# 	for rhyme in rhymes 
-
-# def findVolume(rhyme):
-# 	c = conn.cursor()
-
-# def read():
-# 	wb = load_workbook(filename = 'hoop.xlsx')
-# 	ws = wb["Illustrator info"]
-# 	row = ws.max_row 
-# 	column = ws.max_column
-# 	createIlli()
-# 	for x in range(0,row)
-# 	print row, column

@@ -14,7 +14,7 @@
 	</ul>
 	<?php
 	$attr = '*';
-	$rel = "rhyme natural join contains natural join volume natural join drawFor natural join illustrator";
+	$rel = "rhyme natural join contains natural join volume natural join drawn natural join illustrator";
 	$cond = "";
 
 	if(isset($_POST['flor']) && $_POST['flor'] != "") {
@@ -122,72 +122,82 @@
 			$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
 		}
 		
-				//$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
+		//$illuFreq = "select distinct count(illu) from $rel where $cond and illu = 'yes'";
 		$illuFreqR = $db->query($illuFreq);
 		$count_result = $db->query($count);
 
+		$file = fopen("query_results2.csv","w");
+
 		while ($row = $count_result->fetch(PDO::FETCH_ASSOC))
-			{
-                			//useful for getting info about variables print_r($row);
-        				// echo "Total number of instances returned: ".$row["count(rID)"];
-				$totalcount = $row["count(rID)"];
-			}
-			while ($row = $illuFreqR->fetch(PDO::FETCH_ASSOC))
-				{
-                                        //useful for getting info about variables print_r($row);
-                                        //echo "Freq: ".$row["count(illu)"]."/".$totalcount;
-					$freq = $row["count(illu)"];
-				}
-				?>
-				<head>
-					<style>
-					div.head {
-						background-color: lightgray;
+		{
+               		//useful for getting info about variables print_r($row);
+        		// echo "Total number of instances returned: ".$row["count(rID)"];
+			$totalcount = $row["count(rID)"];
+		}
+
+		while ($row = $illuFreqR->fetch(PDO::FETCH_ASSOC))
+		{
+                	//useful for getting info about variables print_r($row);
+                        //echo "Freq: ".$row["count(illu)"]."/".$totalcount;
+			$freq = $row["count(illu)"];
+		}
+		?>
+
+		<head>
+			<style>
+				div.head {
+					background-color: lightgray;
+					width: 1200px;
+					border: 2px solid gray;
+					padding: 5px;
+					margin: 5px;
+					line-height: 170%;
+					}
+			</style>
+		</head>
+		<body>
+			<div class="head">
+				Your search returned a total of <?php echo " $totalcount";?> rhyme instances &emsp; <?php echo " $freq";?> out of  <?php echo " $totalcount";?> rhyme instances are illustrated
+			</div>
+		</body>
+		<?php
+		session_start();
+		foreach($result_set as $tuple) {
+			//echo "$tuple[rID] | $tuple[flor] | $tuple[illustratorID] | $tuple[lname] | $tuple[fname] | $tuple[datePublished]<br/>\n";
+			//print_r($tuple);
+			$_SESSION['deletevar'] = $tuple;
+			$name = $tuple['lname'] . ", " . $tuple['fname'];
+			$time_frame = $tuple['dob'] . " - " . $tuple['dod'];
+			$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'],$tuple['illt'], $name, $tuple['gender'], $time_frame, $tuple['source1'], $tuple['source2']];
+			fputcsv($file,$csv_array,"\\");
+			?>
+			<head>
+				<style>
+					div {
+						background-color: white;
 						width: 1200px;
-						border: 2px solid gray;
+						border: 2px solid black;
 						padding: 5px;
 						margin: 5px;
 						line-height: 170%;
-					}
+						}
 				</style>
 			</head>
-			<body>
-				<div class="head">
-					Your search returned a total of <?php echo " $totalcount";?> rhyme instances &emsp; <?php echo " $freq";?> out of  <?php echo " $totalcount";?> rhyme instances are illustrated
+			<!-- <body>
+				<div>
+					<u>First Line of Rhyme:</u><?php echo " $tuple[flor]";?>&emsp; <u>Illustrator:</u> <?php echo " $tuple[lname]";?>, <?php echo " $tuple[fname]";?>&emsp; <u>Gender:</u> <?php echo " $tuple[gender]";?>&emsp; <u>Illustrator Lifespan:</u> <?php echo " $tuple[dob] ";?>-<?php echo " $tuple[dod]";?><br>
+					<u>Volume:</u> <?php echo " $tuple[title]";?>,&emsp; &emsp;<u>Date Published:</u> <?php echo " $tuple[datePublished]";?>
+					&emsp;<u>Paginated:</u> <?php echo " $tuple[paginated]";?> &emsp;<u>External:</u> <?php echo " $tuple[external]";?>&emsp;<u>Illustrated:</u> <?php echo " $tuple[illu]";?><br>
+					<u>Source(s):</u> <?php echo " $tuple[source1]";?>, <?php echo " $tuple[source2]";?>
+
+
+					<form action="delete.php">
+						<input type='hidden' name='var' value="<?php echo $tuple ?>"/>
+						<input type="submit" value="Delete" />
+					</form>
 				</div>
-				</body>                                 <?php
-				session_start();
-				foreach($result_set as $tuple) {
-					//echo "$tuple[rID] | $tuple[flor] | $tuple[illustratorID] | $tuple[lname] | $tuple[fname] | $tuple[datePublished]<br/>\n";
-					//print_r($tuple);
-					$_SESSION['deletevar'] = $tuple;
-					?>
-					<head>
-						<style>
-						div {
-							background-color: white;
-							width: 1200px;
-							border: 2px solid black;
-							padding: 5px;
-							margin: 5px;
-							line-height: 170%;
-						}
-					</style>
-				</head>
-				<body>
-					<div>
-						<u>First Line of Rhyme:</u><?php echo " $tuple[flor]";?>&emsp; <u>Illustrator:</u> <?php echo " $tuple[lname]";?>, <?php echo " $tuple[fname]";?>&emsp; <u>Gender:</u> <?php echo " $tuple[gender]";?>&emsp; <u>Illustrator Lifespan:</u> <?php echo " $tuple[dob] ";?>-<?php echo " $tuple[dod]";?><br>
-						<u>Volume:</u> <?php echo " $tuple[title]";?>,&emsp; &emsp;<u>Date Published:</u> <?php echo " $tuple[datePublished]";?>
-						&emsp;<u>Paginated:</u> <?php echo " $tuple[paginated]";?> &emsp;<u>External:</u> <?php echo " $tuple[external]";?>&emsp;<u>Illustrated:</u> <?php echo " $tuple[illu]";?><br>
-						<u>Source(s):</u> <?php echo " $tuple[source1]";?>, <?php echo " $tuple[source2]";?>
 
-						<form action="delete.php">
-							<input type='hidden' name='var' value="<?php echo $tuple ?>"/>
-							<input type="submit" value="Delete" />
-						</form>
-					</div>
-
-					</body>					<?php
+			</body> -->					<?php
 				}
 
 				$db = null;
@@ -195,6 +205,6 @@
 			catch(PDOException $e) {
 				die('Exception : ' . $e->getMessage());
 			}
-			?>
-		</body>
-		</html>
+			fclose($file);?>
+	</body>
+</html>
