@@ -98,7 +98,7 @@ def insertDrawn(values,x):
 	total = []
 	if len(values) == 4:
 		values = values[:-1]
-	l = list(values)
+	l = (hold, values[1],values[2])
 	t = tuple(l)
 	total.append(t)
 	for to in total:
