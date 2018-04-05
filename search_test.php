@@ -14,7 +14,7 @@
 	</ul>
 	<?php
 	$attr = '*';
-	$rel = "rhyme natural join contains natural join volume natural join drawn natural join illustrator";
+	$rel = "rhyme natural join contains natural join volume natural join drawn natural join drawFor natural join illustrator";
 	$cond = "";
 
 	if(isset($_POST['flor']) && $_POST['flor'] != "") {
@@ -66,7 +66,7 @@
 	}
 			//echo "($cond)";
 
-	$db_file = 'hoop6.db';
+	$db_file = 'active.db';
 
 			//$other_query = "SELECT DISTINCT * FROM contains NATURAL JOIN drawn NATURAL JOIN rhyme WHERE rID IN (SELECT rID FROM rhyme) AND illu = 'yes' ORDER BY volumeID";
 
@@ -169,6 +169,8 @@
 			$name = $tuple['lname'] . ", " . $tuple['fname'];
 			$time_frame = $tuple['dob'] . " - " . $tuple['dod'];
 			$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'],$tuple['illt'], $name, $tuple['gender'], $time_frame, $tuple['source1'], $tuple['source2']];
+			echo $tuple['illu'];
+			echo "\n";
 			fputcsv($file,$csv_array,"\\");
 			?>
 			<head>
