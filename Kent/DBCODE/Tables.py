@@ -47,10 +47,7 @@ def createVol():
 	c.execute(''' CREATE TABLE volume (
 	volumeID INTEGER,
 	datePublished INTEGER,
-<<<<<<< HEAD
-	paginated CHECK (paginated = 'Yes' OR paginated = 'No'),
-=======
->>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
+	paginated TEXT,
 	title TEXT NOT NULL,
 	PRIMARY KEY (volumeID)
 	);''')
@@ -59,11 +56,7 @@ def insertVol(values, name):
 	l = list(values)
 	l.append(name)
 	t = tuple(l)
-<<<<<<< HEAD
 	c.execute('INSERT INTO volume VALUES(?,?,?,?)', t,)
-=======
-	c.execute('INSERT INTO volume VALUES(?,?,?)', t,)
->>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 	conn.commit()
 
 def createIlli():
@@ -107,11 +100,7 @@ def insertDrawn(values,x):
 	total = []
 	if len(values) == 4:
 		values = values[:-1]
-<<<<<<< HEAD
 	l = (hold, values[1],values[2])
-=======
-	l = list(values)
->>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 	t = tuple(l)
 	total.append(t)
 	for to in total:

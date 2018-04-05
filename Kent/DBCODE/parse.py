@@ -194,23 +194,23 @@ def readRhymeInfo(wb, start, end):
 				else:
 					flor = unicode(cell.value) #First line of the rhyme
 			if cell.column == 'B':
-				pass
-				# if type(cell.value) is unicode:
-				# 	fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
-				# else:
-				# 	fpor = str(cell.value)
-				# hold = B(fpor)
-				# if hold[1] is True:
-				# 	prf = 'NULL'
-				# 	if rowNumber not in errorReport:
-				# 		errorReport.append(rowNumber)
-				# 		continue
-				# else:
-				# 	prf = hold[0]
+				if type(cell.value) is unicode:
+					fpor = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
+				else:
+					fpor = str(cell.value)
+				hold = B(fpor)
+				if hold[1] is True:
+					prf = 'NULL'
+					if rowNumber not in errorReport:
+						errorReport.append(rowNumber)
+						continue
+				else:
+					prf = hold[0]
 			if cell.column == 'C':
-				test = str(cell.value)
-				if test == 'yes' or test == 'no':
-					illu = test #Is the rhyme illustrated (y/n)
+				u = unicode(cell.value)
+				hold = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
+				if 'yes' in hold or 'no' in hold:
+					illu = hold #Is the rhyme illustrated (y/n)
 				else:
 					illu = 'NULL'
 			if cell.column == 'D':
@@ -265,17 +265,9 @@ def readRhymeInfo(wb, start, end):
 				illustrator = unicode(cell.value)
 				illustrator = G(illustrator)
 				if trigger == 0:
-<<<<<<< HEAD
 					illustratedVol.append((volumeID, datePublished, paginated))
 					illustratorsOfVol.append((volumeID,illustrator))
 					trigger = 1
-=======
-					#illustratedVol.append((volumeID, datePublished, paginated, external))
-					illustratedVol.append((volumeID, datePublished))
-					illustratorsOfVol.append((volumeID,illustrator))
-					trigger = 1
-		#rhymes.append((flor, prf, illt, pif, volumeID))
->>>>>>> 480f3084c42c550466f6472a4b929be5e3b9bb8d
 		rhymes.append((flor, illt, volumeID, illu))
 		rID += 1
 		rowNumber += 1
