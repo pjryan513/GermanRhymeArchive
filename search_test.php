@@ -169,8 +169,6 @@
 			$name = $tuple['lname'] . ", " . $tuple['fname'];
 			$time_frame = $tuple['dob'] . " - " . $tuple['dod'];
 			$csv_array =[$tuple['flor'], $tuple['illu'], $tuple['datePublished'], $tuple['paginated'],$tuple['illt'], $name, $tuple['gender'], $time_frame, $tuple['source1'], $tuple['source2']];
-			echo $tuple['illu'];
-			echo "\n";
 			fputcsv($file,$csv_array,"\\");
 			?>
 			<head>
